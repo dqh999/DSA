@@ -1,4 +1,4 @@
-package exception;
+package dataStructure.exception;
 
 public class ElementNotFoundException extends RuntimeException {
     public ElementNotFoundException(String message) {

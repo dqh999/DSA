@@ -1,7 +1,7 @@
-package tree;
+package dataStructure.tree;
 
-import exception.ElementNotFoundException;
-import exception.EmptyCollectionException;
+import dataStructure.exception.ElementNotFoundException;
+import dataStructure.exception.EmptyCollectionException;
 
 import java.util.ArrayList;
 import java.util.Iterator;

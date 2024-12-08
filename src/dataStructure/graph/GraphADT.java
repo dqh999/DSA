@@ -1,4 +1,4 @@
-package graph;
+package dataStructure.graph;
 import java.util.Iterator;
 
 public interface GraphADT<T> {
