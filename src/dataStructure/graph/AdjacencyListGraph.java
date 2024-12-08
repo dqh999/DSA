@@ -1,7 +1,7 @@
-package graph;
+package dataStructure.graph;
 
-import exception.ElementExistsException;
-import exception.ElementNotFoundException;
+import dataStructure.exception.ElementExistsException;
+import dataStructure.exception.ElementNotFoundException;
 
 import java.util.*;
 
@@ -17,7 +17,7 @@ public class AdjacencyListGraph<T> implements GraphADT<T> {
     @Override
     public void addVertex(T vertex) {
         if (adjacencyList.containsKey(vertex)) {
-            throw new ElementExistsException("Vertex '" + vertex + "' already exists in the graph.");
+            throw new ElementExistsException("Vertex '" + vertex + "' already exists in the dataStructures.graph.");
         }
         adjacencyList.put(vertex, new LinkedList<>());
         numVertices++;
@@ -26,7 +26,7 @@ public class AdjacencyListGraph<T> implements GraphADT<T> {
     @Override
     public void removeVertex(T vertex) {
         if (!adjacencyList.containsKey(vertex)) {
-            throw new ElementNotFoundException("Vertex '" + vertex + "' does not exist in the graph.");
+            throw new ElementNotFoundException("Vertex '" + vertex + "' does not exist in the dataStructures.graph.");
         }
         adjacencyList.remove(vertex);
         numVertices--;
@@ -39,10 +39,10 @@ public class AdjacencyListGraph<T> implements GraphADT<T> {
     @Override
     public void addEdge(T vertex1, T vertex2) {
         if (!adjacencyList.containsKey(vertex1)) {
-            throw new ElementNotFoundException("Vertex '" + vertex1 + "' does not exist in the graph.");
+            throw new ElementNotFoundException("Vertex '" + vertex1 + "' does not exist in the dataStructures.graph.");
         }
         if (!adjacencyList.containsKey(vertex2)) {
-            throw new ElementNotFoundException("Vertex '" + vertex2 + "' does not exist in the graph.");
+            throw new ElementNotFoundException("Vertex '" + vertex2 + "' does not exist in the dataStructures.graph.");
         }
 
         adjacencyList.get(vertex1).add(vertex2);
@@ -52,7 +52,7 @@ public class AdjacencyListGraph<T> implements GraphADT<T> {
     @Override
     public void removeEdge(T vertex1, T vertex2) {
         if (!adjacencyList.containsKey(vertex1) || !adjacencyList.containsKey(vertex2)) {
-            throw new ElementNotFoundException("One or both vertices do not exist in the graph.");
+            throw new ElementNotFoundException("One or both vertices do not exist in the dataStructures.graph.");
         }
         if (!adjacencyList.get(vertex1).contains(vertex2)) {
             throw new ElementNotFoundException("Edge between '" + vertex1 + "' and '" + vertex2 + "' does not exist.");
@@ -65,7 +65,7 @@ public class AdjacencyListGraph<T> implements GraphADT<T> {
     @Override
     public Iterator<T> iteratorBFS(T startVertex) {
         if (!adjacencyList.containsKey(startVertex)) {
-            throw new ElementNotFoundException("Start vertex '" + startVertex + "' does not exist in the graph.");
+            throw new ElementNotFoundException("Start vertex '" + startVertex + "' does not exist in the dataStructures.graph.");
         }
 
         List<T> result = new ArrayList<>();
@@ -93,7 +93,7 @@ public class AdjacencyListGraph<T> implements GraphADT<T> {
     @Override
     public Iterator<T> iteratorDFS(T startVertex) {
         if (!adjacencyList.containsKey(startVertex)) {
-            throw new ElementNotFoundException("Start vertex '" + startVertex + "' does not exist in the graph.");
+            throw new ElementNotFoundException("Start vertex '" + startVertex + "' does not exist in the dataStructures.graph.");
         }
 
         List<T> result = new ArrayList<>();

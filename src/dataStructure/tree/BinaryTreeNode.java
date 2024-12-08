@@ -1,4 +1,4 @@
-package tree;
+package dataStructure.tree;
 
 public class BinaryTreeNode<T> {
     private T element;

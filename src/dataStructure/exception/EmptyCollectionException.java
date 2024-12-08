@@ -1,4 +1,4 @@
-package exception;
+package dataStructure.exception;
 
 public class EmptyCollectionException extends RuntimeException {
     public EmptyCollectionException(String message) {
