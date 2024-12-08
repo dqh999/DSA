@@ -1,8 +1,7 @@
 package graph;
 
-import graph.exception.EdgeNotFoundException;
-import graph.exception.VertexExistsException;
-import graph.exception.VertexNotFoundException;
+import exception.ElementExistsException;
+import exception.ElementNotFoundException;
 
 import java.util.*;
 
@@ -18,7 +17,7 @@ public class AdjacencyListGraph<T> implements GraphADT<T> {
     @Override
     public void addVertex(T vertex) {
         if (adjacencyList.containsKey(vertex)) {
-            throw new VertexExistsException("Vertex '" + vertex + "' already exists in the graph.");
+            throw new ElementExistsException("Vertex '" + vertex + "' already exists in the graph.");
         }
         adjacencyList.put(vertex, new LinkedList<>());
         numVertices++;
@@ -27,13 +26,11 @@ public class AdjacencyListGraph<T> implements GraphADT<T> {
     @Override
     public void removeVertex(T vertex) {
         if (!adjacencyList.containsKey(vertex)) {
-            throw new VertexNotFoundException("Vertex '" + vertex + "' does not exist in the graph.");
+            throw new ElementNotFoundException("Vertex '" + vertex + "' does not exist in the graph.");
         }
-        // Remove the vertex and its edges
         adjacencyList.remove(vertex);
         numVertices--;
 
-        // Remove the vertex from all other adjacency lists
         for (T key : adjacencyList.keySet()) {
             adjacencyList.get(key).remove(vertex);
         }
@@ -42,10 +39,10 @@ public class AdjacencyListGraph<T> implements GraphADT<T> {
     @Override
     public void addEdge(T vertex1, T vertex2) {
         if (!adjacencyList.containsKey(vertex1)) {
-            throw new VertexNotFoundException("Vertex '" + vertex1 + "' does not exist in the graph.");
+            throw new ElementNotFoundException("Vertex '" + vertex1 + "' does not exist in the graph.");
         }
         if (!adjacencyList.containsKey(vertex2)) {
-            throw new VertexNotFoundException("Vertex '" + vertex2 + "' does not exist in the graph.");
+            throw new ElementNotFoundException("Vertex '" + vertex2 + "' does not exist in the graph.");
         }
 
         adjacencyList.get(vertex1).add(vertex2);
@@ -55,10 +52,10 @@ public class AdjacencyListGraph<T> implements GraphADT<T> {
     @Override
     public void removeEdge(T vertex1, T vertex2) {
         if (!adjacencyList.containsKey(vertex1) || !adjacencyList.containsKey(vertex2)) {
-            throw new VertexNotFoundException("One or both vertices do not exist in the graph.");
+            throw new ElementNotFoundException("One or both vertices do not exist in the graph.");
         }
         if (!adjacencyList.get(vertex1).contains(vertex2)) {
-            throw new EdgeNotFoundException("Edge between '" + vertex1 + "' and '" + vertex2 + "' does not exist.");
+            throw new ElementNotFoundException("Edge between '" + vertex1 + "' and '" + vertex2 + "' does not exist.");
         }
 
         adjacencyList.get(vertex1).remove(vertex2);
@@ -68,7 +65,7 @@ public class AdjacencyListGraph<T> implements GraphADT<T> {
     @Override
     public Iterator<T> iteratorBFS(T startVertex) {
         if (!adjacencyList.containsKey(startVertex)) {
-            throw new VertexNotFoundException("Start vertex '" + startVertex + "' does not exist in the graph.");
+            throw new ElementNotFoundException("Start vertex '" + startVertex + "' does not exist in the graph.");
         }
 
         List<T> result = new ArrayList<>();
@@ -96,7 +93,7 @@ public class AdjacencyListGraph<T> implements GraphADT<T> {
     @Override
     public Iterator<T> iteratorDFS(T startVertex) {
         if (!adjacencyList.containsKey(startVertex)) {
-            throw new VertexNotFoundException("Start vertex '" + startVertex + "' does not exist in the graph.");
+            throw new ElementNotFoundException("Start vertex '" + startVertex + "' does not exist in the graph.");
         }
 
         List<T> result = new ArrayList<>();
